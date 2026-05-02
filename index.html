@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>2G's BarberStudio</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #111;
+      color: #fff;
+      overflow-x: hidden;
+    }
+
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      background: #000;
+      position: relative;
+      z-index: 2;
+    }
+
+    header img {
+      height: 80px;
+    }
+
+    /* Floating barber tools */
+    .tools {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .tool {
+      position: absolute;
+      font-size: 32px;
+      opacity: 0.15;
+      animation: float 10s linear infinite;
+    }
+
+    .tool.scissor::before { content: "✂️"; }
+    .tool.clip::before { content: "💈"; }
+    .tool.guard::before { content: "🔧"; }
+
+    /* Different paths */
+    .t1 { top: 10%; left: -10%; animation-duration: 12s; }
+    .t2 { top: 30%; left: -15%; animation-duration: 15s; }
+    .t3 { top: 60%; left: -20%; animation-duration: 18s; }
+    .t4 { top: 80%; left: -25%; animation-duration: 14s; }
+
+    @keyframes float {
+      0% { transform: translateX(0) rotate(0deg); }
+      100% { transform: translateX(120vw) rotate(360deg); }
+    }
+
+    .hero {
+      height: 90vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('barber-bg.jpg') center/cover no-repeat;
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero h1 {
+      font-size: 50px;
+    }
+
+    .hero p {
+      font-size: 18px;
+      color: #ccc;
+    }
+
+    .section {
+      padding: 50px 20px;
+      text-align: center;
+      position: relative;
+      z-index: 2;
+    }
+
+    .barbers {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 25px;
+    }
+
+    .card {
+      background: #1a1a1a;
+      border-radius: 12px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .card:hover {
+      transform: scale(1.05);
+    }
+
+    .card img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+    }
+
+    .card h3 {
+      padding: 15px;
+    }
+
+    .profile {
+      display: none;
+      padding: 60px 20px;
+      text-align: center;
+      position: relative;
+      z-index: 2;
+    }
+
+    .profile img {
+      width: 250px;
+      border-radius: 12px;
+      margin-bottom: 20px;
+    }
+
+    .btn {
+      padding: 12px 20px;
+      background: #c0392b;
+      border: none;
+      color: #fff;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: #000;
+      color: #777;
+      position: relative;
+      z-index: 2;
+    }
+  </style>
+</head>
+<body>
+
+<!-- SVG Clipper Animation -->
+<div class="tools">
+  <svg class="clipper-svg" viewBox="0 0 100 100">
+    <rect x="30" y="10" width="40" height="60" rx="8" fill="#888"/>
+    <rect x="35" y="0" width="30" height="15" rx="4" fill="#ccc"/>
+    <rect x="40" y="5" width="20" height="5" fill="#111">
+      <animate attributeName="y" values="5;8;5" dur="0.3s" repeatCount="indefinite" />
+    </rect>
+  </svg>
+</div>
+  <div class="tool clip t2"></div>
+  <div class="tool guard t3"></div>
+  <div class="tool scissor t4"></div>
+</div>
+
+<audio autoplay loop>
+  <source src="music.mp3" type="audio/mpeg">
+</audio>
+
+<header>
+  <img src="logo.jpg" alt="2G Logo">
+</header>
+
+<div id="main">
+<section class="hero">
+  <h1>2G's BarberStudio</h1>
+  <p>✂️ Clippers • Scissors • Guards • Clean Fades</p>
+</section>
+
+<section class="section">
+  <h2>Our Barbers</h2>
+  <div class="barbers">
+
+    <div class="card" onclick="openProfile('sen')">
+      <img src="placeholder.jpg">
+      <h3>SEN CUTZ</h3>
+    </div>
+
+    <div class="card" onclick="openProfile('radz')">
+      <img src="radz.jpg">
+      <h3>RADZ WORK</h3>
+    </div>
+
+    <div class="card" onclick="openProfile('gin')">
+      <img src="gin.jpg">
+      <h3>GINWITDACLIPS</h3>
+    </div>
+
+  </div>
+</section>
+</div>
+
+<!-- Profiles -->
+<div id="sen" class="profile">
+  <h1>SEN CUTZ</h1>
+  <img src="placeholder.jpg">
+  <p>Price Range: ₱150 - ₱300</p>
+  <button class="btn" onclick="showMain()">Back</button>
+</div>
+
+<div id="radz" class="profile">
+  <h1>RADZ WORK</h1>
+  <img src="radz.jpg">
+  <p>Price Range: ₱200 - ₱400</p>
+  <button class="btn" onclick="showMain()">Back</button>
+</div>
+
+<div id="gin" class="profile">
+  <h1>GINWITDACLIPS</h1>
+  <img src="gin.jpg">
+  <p>Price Range: ₱180 - ₱350</p>
+  <button class="btn" onclick="showMain()">Back</button>
+</div>
+
+<footer>
+  <p>© 2026 2G's BarberStudio ✂️</p>
+</footer>
+
+<script>
+function openProfile(id) {
+  document.getElementById('main').style.display = 'none';
+  document.querySelectorAll('.profile').forEach(p => p.style.display = 'none');
+  document.getElementById(id).style.display = 'block';
+}
+
+function showMain() {
+  document.getElementById('main').style.display = 'block';
+  document.querySelectorAll('.profile').forEach(p => p.style.display = 'none');
+}
+</script>
+
+</body>
+</html>
