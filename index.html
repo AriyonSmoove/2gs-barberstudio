@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2G's BarberStudio</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+body{ margin:0; font-family:'Poppins',sans-serif; background:#111; color:#fff; cursor:auto; }
+
+.card, button, a { cursor: url('barber-pole.png'), pointer; }
+
+#loader{
+ position:fixed;
+ width:100%;
+ height:100%;
+ background:#000;
+ display:flex;
+ justify-content:center;
+ align-items:center;
+ z-index:9999;
+}
+
+.pole{
+ width:70px;
+ height:220px;
+ border-radius:40px;
+ background:repeating-linear-gradient(45deg, red 0, red 20px, white 20px, white 40px, blue 40px, blue 60px);
+ animation:spin 1s linear infinite, rotate3d 2s linear infinite;
+ transform-style:preserve-3d;
+}
+
+@keyframes spin{
+ from{background-position:0 0;}
+ to{background-position:0 120px;}
+}
+@keyframes rotate3d{
+ from{transform:rotateY(0deg);}
+ to{transform:rotateY(360deg);}
+}
+
+.fade{
+ opacity:0;
+ transform:translateY(40px);
+ transition:all 0.8s ease;
+}
+.fade.show{
+ opacity:1;
+ transform:translateY(0);
+}
+
+#main{
+ clip-path: inset(0 100% 0 0);
+ transition: clip-path 1.2s ease;
+}
+#main.reveal{
+ clip-path: inset(0 0 0 0);
+}
+
+header{
+ display:flex;
+ justify-content:center;
+ padding:20px;
+ background:#000;
+}
+header img{height:80px}
+
+.hero{
+ height:90vh;
+ display:flex;
+ flex-direction:column;
+ justify-content:center;
+ align-items:center;
+ text-align:center;
+ background:linear-gradient(rgba(0,0,0,.75),rgba(0,0,0,.75)),url('logo-bg.png') center/cover no-repeat;
+}
+.hero h1{font-size:50px}
+.hero p{color:#ccc}
+
+.section{padding:50px 20px;text-align:center}
+
+.barbers{
+ display:grid;
+ grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+ gap:25px;
+}
+
+.card{
+ background:#1a1a1a;
+ border-radius:12px;
+ overflow:hidden;
+ cursor:pointer;
+ transition:.3s;
+}
+.card:hover{transform:scale(1.05)}
+
+.card img{
+ width:100%;
+ height:250px;
+ object-fit:cover;
+}
+
+/* KEEP ORIGINAL PROFILE STYLE */
+.profile{
+ display:none;
+ text-align:center;
+ padding:60px 20px;
+ opacity:0;
+ transform:translateY(40px);
+ transition:all .5s ease;
+}
+.profile.show{
+ display:block;
+ opacity:1;
+ transform:translateY(0);
+}
+
+.profile img{
+ width:250px;
+ border-radius:12px;
+}
+
+/* UPDATED SOCIALS WITH ICONS */
+.socials a{
+ display:inline-flex;
+ align-items:center;
+ gap:8px;
+ margin:8px;
+ padding:10px 15px;
+ color:#fff;
+ text-decoration:none;
+ background:#222;
+ border-radius:8px;
+ transition:.3s;
+}
+
+.socials a:hover{
+ background:#444;
+ box-shadow:0 0 10px #fff, 0 0 20px #fff;
+}
+.book-btn{
+ display:inline-block;
+ margin-top:15px;
+ padding:12px 20px;
+ background:#0084ff;
+ color:#fff;
+ border-radius:8px;
+ text-decoration:none;
+ font-weight:600;
+ transition:.3s;
+}
+.book-btn:hover{
+ background:#0a6ed1;
+ box-shadow:0 0 12px #0084ff;
+}
+
+
+button{
+ margin-top:20px;
+ padding:10px 20px;
+ border:none;
+ border-radius:8px;
+ font-weight:600;
+}
+</style>
+</head>
+
+<body>
+
+<div id="loader"><div class="pole"></div></div>
+
+<header>
+<img src="logo.jpg">
+</header>
+
+<div id="main">
+
+<section class="hero fade">
+<h1>2G's BarberStudio</h1>
+<p>Taper Fades • Clean Fades • Scissor Works • Curls • Braids • Line Ups • Beard</p>
+</section>
+
+<section class="section fade">
+<h2>Our Barbers</h2>
+
+<div class="barbers">
+
+<div class="card" onclick="openProfile('sen')">
+<img src="placeholder.jpg"><h3>SEN CUTZ</h3>
+</div>
+
+<div class="card" onclick="openProfile('radz')">
+<img src="radz.jpg"><h3>RADZ WORK</h3>
+</div>
+
+<div class="card" onclick="openProfile('gin')">
+<img src="gin.jpg"><h3>GINWITDACLIPS</h3>
+</div>
+
+</div>
+</section>
+
+</div>
+
+<!-- PROFILES ADDED (NO CHANGE TO EXISTING STRUCTURE) -->
+
+<div id="sen" class="profile">
+<img src="placeholder.jpg">
+<h2>SEN CUTZ</h2>
+<p>₱150 - ₱1500</p>
+<div class="socials">
+<a href="https://www.facebook.com/sosa.senn" target="_blank">
+<svg width="20" fill="white" viewBox="0 0 24 24"><path d="M22 12A10 10 0 1 0 10.94 21.94v-7.07H8.08v-2.87h2.86V9.41c0-2.83 1.68-4.39 4.26-4.39 1.23 0 2.52.22 2.52.22v2.77h-1.42c-1.4 0-1.84.87-1.84 1.76v2.12h3.13l-.5 2.87h-2.63v7.07A10 10 0 0 0 22 12z"/></svg>Facebook
+</a>
+<a href="https://www.instagram.com/2g.s3n/" target="_blank">
+<svg width="20" fill="white" viewBox="0 0 24 24"><path d="M7 2C4.24 2 2 4.24 2 7v10c0 2.76 2.24 5 5 5h10c2.76 0 5-2.24 5-5V7c0-2.76-2.24-5-5-5H7zm5 5a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm6.5-.75a1.25 1.25 0 1 1-2.5 0 1.25 1.25 0 0 1 2.5 0z"/></svg>Instagram
+</a>
+
+</div>
+
+<a class="book-btn" href="https://m.me/sosa.senn" target="_blank">Book Now</a>
+
+<button onclick="goBack()">BACK</button>
+
+</div>
+
+<div id="radz" class="profile">
+<img src="radz.jpg">
+<h2>RADZ WORK</h2>
+<p>₱250 - ₱3500</p>
+<div class="socials">
+<a href="https://www.facebook.com/ra.dz.in.2024" target="_blank">
+<svg width="20" fill="white" viewBox="0 0 24 24"><path d="M22 12A10 10 0 1 0 10.94 21.94v-7.07H8.08v-2.87h2.86V9.41c0-2.83 1.68-4.39 4.26-4.39 1.23 0 2.52.22 2.52.22v2.77h-1.42c-1.4 0-1.84.87-1.84 1.76v2.12h3.13l-.5 2.87h-2.63v7.07A10 10 0 0 0 22 12z"/></svg>Facebook
+</a>
+<a href="https://www.instagram.com/2g.r4dz/" target="_blank">
+<svg width="20" fill="white" viewBox="0 0 24 24"><path d="M7 2C4.24 2 2 4.24 2 7v10c0 2.76 2.24 5 5 5h10c2.76 0 5-2.24 5-5V7c0-2.76-2.24-5-5-5H7zm5 5a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm6.5-.75a1.25 1.25 0 1 1-2.5 0 1.25 1.25 0 0 1 2.5 0z"/></svg>Instagram
+</a>
+
+</div>
+
+<a class="book-btn" href="https://m.me/ra.dz.in.2024" target="_blank">Book Now</a>
+
+<button onclick="goBack()">BACK</button>
+
+</div>
+
+<div id="gin" class="profile">
+<img src="gin.jpg">
+<h2>GINWITDACLIPS</h2>
+<p>₱150</p>
+<div class="socials">
+<a href="https://www.facebook.com/elgin.kaiser.serolf/" target="_blank">
+<svg width="20" fill="white" viewBox="0 0 24 24"><path d="M22 12A10 10 0 1 0 10.94 21.94v-7.07H8.08v-2.87h2.86V9.41c0-2.83 1.68-4.39 4.26-4.39 1.23 0 2.52.22 2.52.22v2.77h-1.42c-1.4 0-1.84.87-1.84 1.76v2.12h3.13l-.5 2.87h-2.63v7.07A10 10 0 0 0 22 12z"/></svg>Facebook
+</a>
+<a href="https://www.instagram.com/way2ginz/" target="_blank">
+<svg width="20" fill="white" viewBox="0 0 24 24"><path d="M7 2C4.24 2 2 4.24 2 7v10c0 2.76 2.24 5 5 5h10c2.76 0 5-2.24 5-5V7c0-2.76-2.24-5-5-5H7zm5 5a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm6.5-.75a1.25 1.25 0 1 1-2.5 0 1.25 1.25 0 0 1 2.5 0z"/></svg>Instagram
+</a>
+
+</div>
+
+<a class="book-btn" href="https://m.me/elgin.kaiser.serolf" target="_blank">Book Now</a>
+
+<button onclick="goBack()">BACK</button>
+
+</div>
+
+<audio id="bgMusic" loop>
+<source src="music.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+// PROFILE TRANSITION
+function openProfile(id){
+ document.getElementById("main").style.display="none";
+ let p=document.getElementById(id);
+ p.style.display="block";
+ setTimeout(()=>p.classList.add("show"),10);
+}
+
+function goBack(){
+ document.querySelectorAll(".profile").forEach(p=>{
+  p.classList.remove("show");
+  setTimeout(()=>p.style.display="none",300);
+ });
+ document.getElementById("main").style.display="block";
+}
+
+// ORIGINAL CODE BELOW
+
+// SMART LOADER
+window.addEventListener("load",()=>{
+ let l = document.getElementById("loader");
+ if(localStorage.getItem("visited")){
+  l.style.display = "none";
+  document.getElementById("main").classList.add("reveal");
+ } else {
+  setTimeout(()=>{
+   l.style.opacity="0";
+   setTimeout(()=>l.style.display="none",500);
+  },1500);
+  setTimeout(()=>{
+   document.getElementById("main").classList.add("reveal");
+  },1600);
+  localStorage.setItem("visited", "true");
+ }
+});
+
+// MUSIC FIX
+const music = document.getElementById("bgMusic");
+let started = false;
+
+window.addEventListener("load", () => {
+ music.volume = 0.5;
+ music.play().catch(() => {});
+});
+
+function unlockAudio() {
+ if (!started) {
+  music.play().then(() => {
+   started = true;
+  }).catch(()=>{});
+ }
+}
+
+["click","touchstart","scroll"].forEach(event => {
+ document.addEventListener(event, unlockAudio, { once: true });
+});
+
+// Fade scroll
+const observer = new IntersectionObserver(entries=>{
+ entries.forEach(entry=>{
+  if(entry.isIntersecting){
+   entry.target.classList.add("show");
+  }
+ });
+});
+document.querySelectorAll(".fade").forEach(el=>observer.observe(el));
+</script>
+
+</body>
+</html>
